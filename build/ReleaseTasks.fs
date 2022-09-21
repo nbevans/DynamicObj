@@ -37,8 +37,8 @@ let publishNuget = BuildTask.create "PublishNuget" [clean; build; runTests; pack
     for target in targets do printfn "%A" target
     let msg = sprintf "release package with version %s?" stableVersionTag
     if promptYesNo msg then
-        let source = "https://api.nuget.org/v3/index.json"
-        let apikey =  Environment.environVar "NUGET_KEY_CSB"
+        let source = "https://pkgs.dev.azure.com/housinginsight/_packaging/Legacy_Packages/nuget/v3/index.json"
+        let apikey = "az" // Environment.environVar "NUGET_KEY_CSB"
         for artifact in targets do
             let result = DotNet.exec id "nuget" (sprintf "push -s %s -k %s %s --skip-duplicate" source apikey artifact)
             if not result.OK then failwith "failed to push packages"
@@ -50,8 +50,8 @@ let publishNugetPrerelease = BuildTask.create "PublishNugetPrerelease" [clean; b
     for target in targets do printfn "%A" target
     let msg = sprintf "release package with version %s?" prereleaseTag 
     if promptYesNo msg then
-        let source = "https://api.nuget.org/v3/index.json"
-        let apikey =  Environment.environVar "NUGET_KEY_CSB"
+        let source = "https://pkgs.dev.azure.com/housinginsight/_packaging/Legacy_Packages/nuget/v3/index.json"
+        let apikey = "az" // Environment.environVar "NUGET_KEY_CSB"
         for artifact in targets do
             let result = DotNet.exec id "nuget" (sprintf "push -s %s -k %s %s --skip-duplicate" source apikey artifact)
             if not result.OK then failwith "failed to push packages"
