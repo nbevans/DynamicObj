@@ -153,9 +153,9 @@ type ImmutableDynamicObj internal (map : Map<string, obj>) =
                 | :? ImmutableDynamicObj as item -> 
                     let innerMembers = item.Properties |> Map.toList
                     let innerPrint = (loop (identationLevel + 1) innerMembers [])
-                    loop identationLevel rest ($"{ident}?{key}:{System.Environment.NewLine}{innerPrint}" :: acc)
+                    loop identationLevel rest ((ident + "?" + key + ":" + System.Environment.NewLine + innerPrint) :: acc)
                 | _ -> 
-                    loop identationLevel rest ($"{ident}?{key}: {item}"::acc)
+                    loop identationLevel rest ((ident + "?" + key + ": " + string item) :: acc)
     
         loop 0 members []
 

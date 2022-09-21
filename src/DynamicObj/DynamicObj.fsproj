@@ -8,6 +8,7 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <SignAssembly>true</SignAssembly>
+	<AssemblyName>DynamicObj.FSC472</AssemblyName>
     <AssemblyOriginatorKeyFile>../../key.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 
@@ -34,6 +35,10 @@
   
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <PackageReference Update="FSharp.Core" Version="4.7.2" />
   </ItemGroup>
 
   

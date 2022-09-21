@@ -100,9 +100,9 @@ module DynObj =
                 | :? DynamicObj as item -> 
                     let innerMembers = item.GetDynamicMemberNames() |> Seq.cast<string> |> List.ofSeq
                     let innerPrint = (loop item (identationLevel + 1) innerMembers [])
-                    loop object identationLevel rest ($"{ident}?{m}:{System.Environment.NewLine}{innerPrint}" :: acc)
+                    loop object identationLevel rest ((ident + "?" + m + ":" + System.Environment.NewLine + innerPrint) :: acc)
                 | _ -> 
-                    loop object identationLevel rest ($"{ident}?{m}: {item}"::acc)
+                    loop object identationLevel rest ((ident + "?" + m + ": " + string item) :: acc)
     
         loop d 0 members []
 
